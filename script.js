@@ -87,10 +87,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.innerHTML = `
                     <div style="text-align: center; padding: 20px;">
                         <h3 style="color: #4CAF50;">✅ 收到啦！</h3>
-                        <p>你的选择已经发送到我的邮箱了。</p>
+                        <p>你的选择已经发送成功了。</p>
                         <p>我会尽快兑现诺言的！爱你 ❤️</p>
+                        <button id="backBtn" style="
+                            margin-top: 15px;
+                            padding: 10px 30px;
+                            background-color: #e91e63;
+                            color: white;
+                            border: none;
+                            border-radius: 50px;
+                            font-size: 1rem;
+                            cursor: pointer;
+                        ">返回</button>
                     </div>
                 `;
+                // 给返回按钮绑定事件
+                document.getElementById('backBtn').addEventListener('click', () => {
+                    successOverlay.classList.add('hidden');
+                    location.reload(); // 刷新页面回到初始状态
+                });
             } else {
                 // 失败时的处理
                 submitBtn.textContent = "提交失败，请重试";
