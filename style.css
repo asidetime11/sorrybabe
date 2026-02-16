@@ -105,8 +105,7 @@ button {
 #refuseBtn {
     background-color: #9e9e9e;
     color: white;
-    /* 关键：绝对定位，方便移动 */
-    position: absolute; 
+    /* 初始状态不设绝对定位，让它正常排列在同意按钮旁边 */
     transition: all 0.1s ease; /* 移动时的平滑过渡 */
 }
 
