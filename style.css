@@ -112,6 +112,11 @@ button {
 
 /* 成功弹窗样式 */
 .hidden {
+    display: none;
+}
+
+/* 弹窗覆盖层隐藏 */
+#successOverlay.hidden {
     display: none !important;
 }
 
