@@ -8,13 +8,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>对不起 🥺</h1>
-        <p class="message">我知道我做错了，让你不开心了。</p>
-        <p class="message">请你原谅我好吗？</p>
+        <h1>对不起亲爱的宝宝  </h1>
+        <p class="message">我知道这次没有遵守买皮肤的约定, 让你特别特别难过</p>
+        
+        <button id="toggleApologyBtn" class="toggle-btn">查看我的碎碎念 👇</button>
+
+        <div class="apology-list hidden" id="apologyContent">
+            <p class="message">以下是我真诚的道歉和一些些真心话:</p>
+            <p>(1) 我没有兑现之前出皮肤买给你的诺言, 这次也非常感谢柚子宝宝提出来, 让我意识到自己的错误</p>
+            <p>(2) 昨天晚上回消息的时候看起来我有些不在意, 其实我特别特别慌张, 现在也很难过, 因为我知道这件事对你来说很重要</p>
+            <p>(3) 我真的真的很在乎你的, 不想因为这件事让你伤心难过, 尤其是在大过年的喜庆日子里</p>
+            <p>(4) 所以请柚子宝宝多多监督, 这次小小的赔罪, 你点击同意后会看见哒！</p>
+            <hr>
+            <p>不过说到关心, 其实我这几天脚还是不太舒服, 也好想有人来关心关心我</p>
+            <p>然后我以为我这次花了很多心思给你做了网页, 你肯定会很开心的, 加上我之前就跟你说了买黄金转运珠的事情</p>
+            <p>脑子里就剩下买那个的事情, 压根没有想到买皮肤的事情, 我承认这是我的问题</p>
+            <p>于是乎现在我也有点难过了, 我总觉得自己已经很努力了, 希望给你制造一些浪漫的事情, 但还总是mess up, 让你觉得我说话不算话</p>
+            <p>我明白, 这是因为你对我的期待和信任特别高, 所以我的说话不算话才会让你更加觉得失落</p>
+            <p>当然我们开诚布公的说, 我希望你下次可以给我一点hint, 就一点就好, 我想我真的很难记得我说过的全部的话</p>
+            <p>换位思考, 打羽毛球这件事你也一拖再拖, 但是我真的不觉得是你不靠谱或者怎么样</p>
+            <p>我想我真的真的特别特别爱你, 我愿意为你做很多的事情, 比如每一次的道歉和赔罪, 也希望你能感受到我的诚意, 以后我会更加努力的去记住我们之间的约定, 不让你失望了</p>
+        </div>
         
         <div class="buttons">
-            <button id="agreeBtn">原谅你啦</button>
-            <button id="refuseBtn">不仅不原谅，还要打你</button>
+            <button id="agreeBtn">我大人不记小人过, 这次饶你一马</button>
+            <button id="refuseBtn">不仅不原谅，还要打你一顿, 你记着!</button>
         </div>
     </div>
     
@@ -22,8 +40,47 @@
     <div id="successOverlay" class="hidden">
         <div class="modal">
             <h2>太好了！❤️</h2>
-            <p>谢谢你的包容，我会改的！</p>
-            <p>接下来想吃什么？我请客！</p>
+            <p>为了表达歉意，请柚子大王选择一个赔罪方案！</p>
+            
+            <!-- 请将下面的 action 链接换成你自己在 Formspree 申请的链接 -->
+            <form id="choiceForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="options-container">
+                    
+                    <!-- 选项 1 -->
+                    <label class="option-card">
+                        <input type="radio" name="choice" value="方案一：清空购物车" required>
+                        <div class="card-content">
+                            <!-- src 换成你的图片路径，比如 images/cart.jpg -->
+                            <img src="https://via.placeholder.com/150?text=Cart" alt="方案一截图">
+                            <h3>方案一</h3>
+                            <p>帮你清空购物车（限额500元内）</p>
+                        </div>
+                    </label>
+
+                    <!-- 选项 2 -->
+                    <label class="option-card">
+                        <input type="radio" name="choice" value="方案二：豪华大餐">
+                        <div class="card-content">
+                            <img src="https://via.placeholder.com/150?text=Food" alt="方案二截图">
+                            <h3>方案二</h3>
+                            <p>周末请你吃顿好的，地点你定</p>
+                        </div>
+                    </label>
+
+                    <!-- 选项 3 -->
+                    <label class="option-card">
+                        <input type="radio" name="choice" value="方案三：家务全包">
+                        <div class="card-content">
+                            <img src="https://via.placeholder.com/150?text=Work" alt="方案三截图">
+                            <h3>方案三</h3>
+                            <p>承包一个月的洗碗和拖地</p>
+                        </div>
+                    </label>
+
+                </div>
+
+                <button type="submit" id="submitBtn">提交选择</button>
+            </form>
         </div>
     </div>
 
