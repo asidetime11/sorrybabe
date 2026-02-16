@@ -17,19 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 拒绝按钮的移动逻辑
     const moveButton = () => {
-        // 获取窗口可视区域的宽度和高度
-        const maxWidth = window.innerWidth - refuseBtn.offsetWidth;
-        const maxHeight = window.innerHeight - refuseBtn.offsetHeight;
+        // 重置定位方式为 fixed，相对于视口移动
+        refuseBtn.style.position = 'fixed';
+        
+        // 获取按钮尺寸
+        const btnWidth = refuseBtn.offsetWidth;
+        const btnHeight = refuseBtn.offsetHeight;
+        
+        // 计算可视区域的安全范围（稍微留出边缘边距）
+        const maxWidth = window.innerWidth - btnWidth - 20;
+        const maxHeight = window.innerHeight - btnHeight - 20;
 
         // 生成随机坐标
-        // Math.random() 生成 0-1 之间的数
-        const randomX = Math.random() * maxWidth;
-        const randomY = Math.random() * maxHeight;
+        const randomX = Math.max(10, Math.random() * maxWidth);
+        const randomY = Math.max(10, Math.random() * maxHeight);
 
-        // 将按钮设置为 fixed 定位，这样它是相对于整个窗口移动的
-        refuseBtn.style.position = 'fixed';
         refuseBtn.style.left = randomX + 'px';
         refuseBtn.style.top = randomY + 'px';
+        
+        // 确保层级最高，不被盖住
+        refuseBtn.style.zIndex = '9999';
     };
 
     // 鼠标移入（PC端）
@@ -53,22 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
         successOverlay.classList.remove('hidden');
     });
 
-    // 表单提交相关的逻辑 (可选：用 JS 增强体验，不刷新页面)
-    /* 
-       注意：如果你使用了 Formspree，默认它会跳转到一个成功页面。
-       如果你希望留在本页并显示"提交成功"，可以使用下面的 AJAX 代码。
-       如果不使用 AJAX，下面的代码可以忽略，表单会自动跳转。
-    */
+    // 表单提交相关的逻辑
     const form = document.getElementById("choiceForm");
-    
-    // (可选) 拦截表单提交，使用 AJAX 发送
-    /*
+    const submitBtn = document.getElementById("submitBtn");
+
     form.addEventListener("submit", function(event) {
+        // 阻止表单默认的跳转行为
         event.preventDefault();
-        const status = document.createElement("p");
-        form.appendChild(status);
         
+        // 更改按钮状态
+        submitBtn.textContent = "正在提交...";
+        submitBtn.disabled = true;
+
         const data = new FormData(event.target);
+        
+        // 使用 fetch API 发送请求
         fetch(event.target.action, {
             method: form.method,
             body: data,
@@ -77,21 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }).then(response => {
             if (response.ok) {
-                status.innerHTML = "收到啦！我会尽快准备的！";
-                form.reset(); // 清空表单
-                // 隐藏提交按钮防止重复提交
-                document.getElementById('submitBtn').style.display = 'none';
+                // 成功时的处理
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <h3 style="color: #4CAF50;">✅ 收到啦！</h3>
+                        <p>你的选择已经发送到我的邮箱了。</p>
+                        <p>我会尽快兑现诺言的！爱你 ❤️</p>
+                    </div>
+                `;
             } else {
-                response.json().then(data => {
-                    if (Object.hasOwn(data, 'errors')) {
-                        status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-                    } else {
-                        status.innerHTML = "提交失败了，请截图发给我吧。";
-                    }
-                })
+                // 失败时的处理
+                submitBtn.textContent = "提交失败，请重试";
+                submitBtn.disabled = false;
+                alert("哎呀，提交出错了，可能是网络问题。");
             }
         }).catch(error => {
-            status.innerHTML = "提交失败了，请截图发给我吧。";
+            console.error('Error:', error);
+            submitBtn.textContent = "提交失败";
+            submitBtn.disabled = false;
+            alert("提交失败了，请截图发给我吧。");
         });
     });
-    */
+});

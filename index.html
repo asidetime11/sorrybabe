@@ -10,17 +10,14 @@
     <div class="container">
         <h1>对不起亲爱的宝宝  </h1>
         <p class="message">我知道这次没有遵守买皮肤的约定, 让你特别特别难过</p>
-        
-        <button id="toggleApologyBtn" class="toggle-btn">查看我的碎碎念 👇</button>
+        <p class="message">这次也非常感谢柚子宝宝提出来, 让我意识到自己的错误</p>
+        <p class="message">昨天晚上回消息的时候看起来我有些不在意, 其实我特别特别慌张, 但因为和同学们一起吃夜宵, 我回的消息可能显得不是很有诚意, 但我真的很想好好道歉的</p>
+        <p class="message">很抱歉在除夕夜让你难过和不开心, 在这里也提前祝柚子宝宝马年如意, 马到成功, 马上变有钱!</p>
+        <p class="message">这里再说一声对不起</p>
 
+        <button id="toggleApologyBtn" class="toggle-btn">以下是我的碎碎念 👇</button>
         <div class="apology-list hidden" id="apologyContent">
-            <p class="message">以下是我真诚的道歉和一些些真心话:</p>
-            <p>(1) 我没有兑现之前出皮肤买给你的诺言, 这次也非常感谢柚子宝宝提出来, 让我意识到自己的错误</p>
-            <p>(2) 昨天晚上回消息的时候看起来我有些不在意, 其实我特别特别慌张, 现在也很难过, 因为我知道这件事对你来说很重要</p>
-            <p>(3) 我真的真的很在乎你的, 不想因为这件事让你伤心难过, 尤其是在大过年的喜庆日子里</p>
-            <p>(4) 所以请柚子宝宝多多监督, 这次小小的赔罪, 你点击同意后会看见哒！</p>
-            <hr>
-            <p>不过说到关心, 其实我这几天脚还是不太舒服, 也好想有人来关心关心我</p>
+            <p>说到关心, 其实我这几天脚还是不太舒服, 也好想有人来关心关心我(哭)</p>
             <p>然后我以为我这次花了很多心思给你做了网页, 你肯定会很开心的, 加上我之前就跟你说了买黄金转运珠的事情</p>
             <p>脑子里就剩下买那个的事情, 压根没有想到买皮肤的事情, 我承认这是我的问题</p>
             <p>于是乎现在我也有点难过了, 我总觉得自己已经很努力了, 希望给你制造一些浪漫的事情, 但还总是mess up, 让你觉得我说话不算话</p>
@@ -42,38 +39,51 @@
             <h2>太好了！❤️</h2>
             <p>为了表达歉意，请柚子大王选择一个赔罪方案！</p>
             
-            <!-- 请将下面的 action 链接换成你自己在 Formspree 申请的链接 -->
-            <form id="choiceForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <!-- 使用 FormSubmit，无需注册，只需将 your@email.com 替换为你的真实邮箱 -->
+            <form id="choiceForm" action="mailto:bernadoltom@gmail.com" method="POST">
+                <!-- 配置项：关闭验证码 -->
+                <input type="hidden" name="_captcha" value="false">
+                <!-- 配置项：邮件标题 -->
+                <input type="hidden" name="_subject" value="收到新的赔罪方案选择！">
+                <!-- 配置项：使用JSON格式提交（配合JS使用） -->
+                <input type="hidden" name="_template" value="table">
+                
                 <div class="options-container">
                     
                     <!-- 选项 1 -->
                     <label class="option-card">
-                        <input type="radio" name="choice" value="方案一：清空购物车" required>
+                        <input type="radio" name="choice" value="方案一：清空淘宝购物车" required>
                         <div class="card-content">
-                            <!-- src 换成你的图片路径，比如 images/cart.jpg -->
-                            <img src="https://via.placeholder.com/150?text=Cart" alt="方案一截图">
                             <h3>方案一</h3>
-                            <p>帮你清空购物车（限额500元内）</p>
+                            <p>帮你清空购物车（限额你来定!）</p>
                         </div>
                     </label>
 
                     <!-- 选项 2 -->
                     <label class="option-card">
-                        <input type="radio" name="choice" value="方案二：豪华大餐">
+                        <input type="radio" name="choice" value="方案二：王者皮肤">
                         <div class="card-content">
-                            <img src="https://via.placeholder.com/150?text=Food" alt="方案二截图">
                             <h3>方案二</h3>
-                            <p>周末请你吃顿好的，地点你定</p>
+                            <p>王者荣耀下一款你喜欢的无双皮肤帮抽, 抽中为止! </p>
                         </div>
                     </label>
 
                     <!-- 选项 3 -->
                     <label class="option-card">
-                        <input type="radio" name="choice" value="方案三：家务全包">
+                        <input type="radio" name="choice" value="方案三：闪现">
                         <div class="card-content">
-                            <img src="https://via.placeholder.com/150?text=Work" alt="方案三截图">
                             <h3>方案三</h3>
-                            <p>承包一个月的洗碗和拖地</p>
+                            <p>往后几天你来挑选, 我当面向你表达歉意, 方式不限于挨打挨骂</p>
+                        </div>
+                    </label>
+
+                    <!-- 选项 4: 其他 -->
+                    <label class="option-card">
+                        <input type="radio" name="choice" value="其他" id="otherOption">
+                        <div class="card-content">
+                            <h3>其他</h3>
+                            <p>全部不满意, 请柚子指导工作!</p>
+                            <input type="text" name="other_choice" class="other-input" placeholder="请输入..." onclick="document.getElementById('otherOption').checked = true;">
                         </div>
                     </label>
 
